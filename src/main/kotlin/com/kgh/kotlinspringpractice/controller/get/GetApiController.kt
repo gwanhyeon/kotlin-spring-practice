@@ -1,11 +1,11 @@
-package com.kgh.kotlinspringpractice.controller
+package com.kgh.kotlinspringpractice.controller.get
 
 import com.kgh.kotlinspringpractice.model.UserRequest
 import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api")
-class ApiController {
+class GetApiController {
 
     // basic
     @GetMapping(path=["/orders", "orderItems"])
@@ -21,13 +21,13 @@ class ApiController {
 
     // path variable
     @GetMapping("/v1/{name}/{age}")
-    fun pathVariable(@PathVariable name : String, @PathVariable age:Int): String{
+    fun pathVariable(@PathVariable name: String, @PathVariable age: Int): String{
         println("name => " + name + " age => "+ age);
         return name + " " + age;
     }
     // path variable multi
     @GetMapping("/v2/{name}/{age}")
-    fun pathVariable2(@PathVariable(value="name") _name : String, @PathVariable(name="age") age:Int): String{
+    fun pathVariable2(@PathVariable(value="name") _name: String, @PathVariable(name="age") age: Int): String{
         val name = "kotlin"
         println("name => ${name} age => ${age}");
         return _name + " " + age;
