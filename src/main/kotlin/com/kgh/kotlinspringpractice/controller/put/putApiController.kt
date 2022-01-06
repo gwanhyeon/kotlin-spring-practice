@@ -3,7 +3,12 @@ package com.kgh.kotlinspringpractice.controller.put
 import com.kgh.kotlinspringpractice.model.Result
 import com.kgh.kotlinspringpractice.model.UserRequest
 import com.kgh.kotlinspringpractice.model.UserResponse
+import org.springframework.http.ResponseEntity
+import org.springframework.validation.BindingResult
+import org.springframework.validation.FieldError
 import org.springframework.web.bind.annotation.*
+import java.lang.StringBuilder
+import javax.validation.Valid
 
 @RestController
 @RequestMapping("/api")
@@ -17,10 +22,18 @@ class putApiController {
         return "request mapping put method"
     }
     @PutMapping(path=["v3"])
-    fun putMappingObject(@RequestBody userRequest: UserRequest): UserResponse {
-
+    fun putMappingObject(@Valid @RequestBody userRequest: UserRequest, bindingResult: BindingResult): ResponseEntity<String> {
+        val msg = StringBuilder();
+        if(bindingResult.hasErrors()){
+            bindingResult.allErrors.forEach{
+                val field = it as FieldError
+                val message = it.defaultMessage
+                msg.append(field.field + " : " + message + "\n")
+            }
+            return ResponseEntity.badRequest().body(msg.toString())
+        }
         // Reponse
-        return UserResponse().apply {
+       /* return UserResponse().apply {
             // result
             this.result = Result().apply {
                 this.resultCode = "201"
@@ -48,7 +61,8 @@ class putApiController {
                 this.phoneNumber = "010-0000-0000"
             })
             this.userRequest = userList;
-        }
+        }*/
+        return ResponseEntity.ok("");
     }
 
 
