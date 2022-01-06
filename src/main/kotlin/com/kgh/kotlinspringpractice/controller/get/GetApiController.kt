@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*
 class GetApiController {
 
     // basic
-    @GetMapping(path=["/orders", "orderItems"])
+    @GetMapping(path=["/orders", "/orderItems"])
     fun getOrderList(): String {
         return "this is the basic request"
     }
