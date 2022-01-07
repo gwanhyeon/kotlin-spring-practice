@@ -28,6 +28,7 @@ class DeleteApiController {
     @DeleteMapping(path = ["/v2/name/{name}/age/{age}"])
     fun deleteMappingPath(@PathVariable(value="name")
         @Size(min = 2, max = 5)
+        @Min(value = 10, message = "It has to be greater than 10")
         @NotNull
         _name: String,
 
