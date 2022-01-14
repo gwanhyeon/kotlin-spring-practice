@@ -27,7 +27,6 @@ data class UserRequest (
     @field:StringFormatDateTime(pattern="yyyy-MM-dd HH:mm:ss", message = "패턴이 올바르지 않습니다.")
     var createdAt:String?=null // yyyy-MM-dd HH:mm:ss
 
-
     // You can't use a hyphen
     // not able to var phone-number:String?=null
 ){
