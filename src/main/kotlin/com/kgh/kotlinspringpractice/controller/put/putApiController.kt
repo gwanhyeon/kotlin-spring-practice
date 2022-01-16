@@ -13,7 +13,7 @@ import javax.validation.Valid
 @RestController
 @RequestMapping("/api")
 class putApiController {
-    @PutMapping("v1")
+    @PutMapping("/v1")
     fun putMapping(): String{
         return "put Mapping request"
     }
@@ -21,7 +21,7 @@ class putApiController {
     fun function2(): String {
         return "request mapping put method"
     }
-    @PutMapping(path=["v3"])
+    @PutMapping(path=["/v3"])
     fun putMappingObject(@Valid @RequestBody userRequest: UserRequest, bindingResult: BindingResult): ResponseEntity<String> {
         val msg = StringBuilder();
         if(bindingResult.hasErrors()){
@@ -32,6 +32,7 @@ class putApiController {
             }
             return ResponseEntity.badRequest().body(msg.toString())
         }
+        return ResponseEntity.ok("");
         // Reponse
        /* return UserResponse().apply {
             // result
@@ -62,7 +63,7 @@ class putApiController {
             })
             this.userRequest = userList;
         }*/
-        return ResponseEntity.ok("");
+
     }
 
 
